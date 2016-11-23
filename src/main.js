@@ -1,10 +1,11 @@
 import Vue from 'vue';
+import VueResouce from 'vue-resource';
 import App from './App';
 
-Vue.use(require('vue-resource'));
+Vue.use(VueResouce);
 
 /* eslint-disable no-new */
-new Vue({
+window.vm = new Vue({
   el: '#app',
   template: '<App/>',
   components: { App },

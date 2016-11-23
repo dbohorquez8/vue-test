@@ -1,7 +1,7 @@
 <template>
   <div class="pokemon">
-    <h1>{{ name }}</h1>
-    <!-- <img src={{ spriteUrl }} alt=""> -->
+    <h1>{{ pokemon.name }}</h1>
+    <img :src="pokemon.sprites.front_default" alt="">
   </div>
 </template>
 
@@ -10,13 +10,14 @@ export default {
   name: 'Pokemon',
   data() {
     return {
-      name: 'Loading...',
-      spriteUrl: '',
+      pokemon: {
+        sprites: {},
+      },
     };
   },
   created() {
-    this.$http.get('http://pokeapi.co/api/v2/pokemon/1/', (data) => {
-      this.name = data;
+    this.$http.get('http://pokeapi.co/api/v2/pokemon/1/').then((data) => {
+      this.pokemon = data.body;
     });
   },
 };
