@@ -13,10 +13,18 @@ export default {
       pokemon: {
         sprites: {},
       },
+      pokemonId: 1,
     };
   },
+  watch: {
+    pokemonId() {
+      this.$http.get(`http://pokeapi.co/api/v2/pokemon/${this.pokemonId}/`).then((data) => {
+        this.pokemon = data.body;
+      });
+    },
+  },
   created() {
-    this.$http.get('http://pokeapi.co/api/v2/pokemon/1/').then((data) => {
+    this.$http.get(`http://pokeapi.co/api/v2/pokemon/${this.pokemonId}/`).then((data) => {
       this.pokemon = data.body;
     });
   },
